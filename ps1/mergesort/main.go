@@ -50,25 +50,25 @@ func mergesort(data []int) []int {
 		temp := *a
 		*a = *b
 		*b = temp
-	};
+	}
 
-	merge := func (a []int, b []int) []int {
-		buffer := make([]int, len(a) + len(b), len(a) + len(b))
+	merge := func(a []int, b []int) []int {
+		buffer := make([]int, len(a)+len(b), len(a)+len(b))
 		ai, bi := 0, 0
 		for ai < len(a) && bi < len(b) {
 			if a[ai] < b[bi] {
-				buffer[ai + bi] = a[ai]
+				buffer[ai+bi] = a[ai]
 				ai++
 			} else {
-				buffer[ai + bi] = b[bi]
+				buffer[ai+bi] = b[bi]
 				bi++
 			}
 		}
 
 		if ai != len(a) {
-			copy(buffer[ai + bi:], a[ai:])
+			copy(buffer[ai+bi:], a[ai:])
 		} else if bi != len(b) {
-			copy(buffer[ai + bi:], b[bi:])
+			copy(buffer[ai+bi:], b[bi:])
 		}
 
 		return buffer

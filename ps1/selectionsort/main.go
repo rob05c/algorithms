@@ -51,11 +51,10 @@ func selectionsort(data []int) []int {
 		temp := *a
 		*a = *b
 		*b = temp
-	};
-	
+	}
+
 	// i is the current position, before which all elements are sorted
 	for i := 0; i != len(data); i++ {
-
 		nextLowest := i ///< the index of the lowest value in the array, which needs to be 'selected' and swapped with data[i]
 		// j is the position of the iterator, which finds the next lowest value in the array
 		for j := i; j != len(data); j++ {
@@ -63,8 +62,6 @@ func selectionsort(data []int) []int {
 				nextLowest = j
 			}
 		}
-
-//		fmt.Printf("swapping %d and %d\n", i, nextLowest) // debug
 
 		swap(&data[i], &data[nextLowest])
 	}
