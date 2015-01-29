@@ -1,5 +1,5 @@
 CC=clang++
-OPTIONS=-std=c++11 -g -Wfatal-errors
+OPTIONS=-O3 -std=c++11 -g -Wfatal-errors
 LINK_OPTIONS= #-ltbb
 all: radixsort
 radixsort: main.o
