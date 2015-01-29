@@ -44,9 +44,7 @@ func getdata(filename string) ([]int, error) {
 	return data, nil
 }
 
-/// This is a subset of a true radix sort, for input values from [0..99].
-/// A true radix sort for arbitrary integers is significantly slower, having to check many more digits.
-func selectionSort(data []int) []int {
+func selectionsort(data []int) []int {
 
 	/// DO NOT replace this with the XOR method. It is slow.
 	swap := func(a *int, b *int) {
@@ -92,7 +90,7 @@ func main() {
 	fmt.Println(data)
 
 	fmt.Println("sorting...")
-	data = selectionSort(data)
+	data = selectionsort(data)
 
 	fmt.Println(data)
 }
