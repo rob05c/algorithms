@@ -44,7 +44,12 @@ func getdata(filename string) ([]int, error) {
 	return data, nil
 }
 
-func selectionsort(data []int) []int {
+type assignments_t uint64
+type comparisons_t uint64
+
+func selectionsort(data []int) ([]int, assignments_t, comparisons_t) {
+	var assignments assignments_t
+	var comparisons comparisons_t
 
 	/// DO NOT replace this with the XOR method. It is slow.
 	swap := func(a *int, b *int) {
@@ -58,15 +63,17 @@ func selectionsort(data []int) []int {
 		nextLowest := i ///< the index of the lowest value in the array, which needs to be 'selected' and swapped with data[i]
 		// j is the position of the iterator, which finds the next lowest value in the array
 		for j := i; j != len(data); j++ {
+			comparisons++
 			if data[j] < data[nextLowest] {
 				nextLowest = j
 			}
 		}
 
+		assignments += 2
 		swap(&data[i], &data[nextLowest])
 	}
 
-	return data
+	return data, assignments, comparisons
 }
 
 func main() {
@@ -87,7 +94,9 @@ func main() {
 	fmt.Println(data)
 
 	fmt.Println("sorting...")
-	data = selectionsort(data)
-
+	data, assignments, comparisons := selectionsort(data)
+	fmt.Println("sorted:")
 	fmt.Println(data)
+	fmt.Printf("assignments: %d\n", assignments)
+	fmt.Printf("comparisons: %d\n", comparisons)
 }
