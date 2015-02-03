@@ -44,10 +44,13 @@ func getdata(filename string) ([]int, error) {
 	return data, nil
 }
 
+type assignments_t int
+
 /// This is a subset of a true radix sort, for input values from [0..99].
 /// A true radix sort for arbitrary integers is significantly slower, having to check many more digits.
-func restrictedRadixSort(data []int) []int {
+func restrictedRadixSort(data []int) []int, assignments_t {
 	buckets := make([]int, 100, 100)
+	var assignments assignments_t
 
 	for _, val := range data {
 		buckets[val]++
